@@ -20,7 +20,7 @@ echo ""
 # Crear una sub-presentación en la cual dice algo así como: "El archivo que se va a analizar es ..."
 
 
-options=("Yes" "No" "Cancel" "${array[@]}") # join arrays to add some variable array
+options=("statsWords" "statsUsageWords" "findNames" "statsSentences" "blankLinesCounter" "${array[@]}") # join arrays to add some variable array
 
 case `select_opt "${options[@]}"` in
     0) OPTION="selected Yes";;
