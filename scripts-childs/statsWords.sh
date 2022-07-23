@@ -5,7 +5,7 @@
 # statsWords
 
 
-# ----- ZONA DE FUNCIONES -----
+# ------------------------------------- ZONA DE FUNCIONES ------------------------------------------------
 
 function cant_words(){
 
@@ -17,23 +17,85 @@ function cant_words(){
 WORDS=`cant_words $1`
 
 
-echo "la cantidad de palabras que tiene el archivo es: $WORDS"
+#echo "la cantidad de palabras que tiene el archivo es: $WORDS"
 
 
-function cant_characters(){
+function char_counter(){
 
-    # Obtiene la cantidad de caracteres de un archivo
+  #Recibe un archivo como parámetro y retorna la cantidad de caracteres sin contar los esoacios en blanco
 
-    wc -m $1 | awk '{print $1}'
+  CADENA=`cat $1 | tr -d '[[:space:]]'`
+
+  echo -n ${#CADENA}
+
+}
+
+CHARACTERS=`char_counter $1`
+
+
+
+#echo "la cantidad de caracteres que tiene el archivo es: $CHARACTERS"
+
+
+
+function len_promedio(){
+
+    PROMEDIO=$((CHARACTERS/WORDS))
+
+    echo $PROMEDIO
 }
 
 
-CHARACTERS=`cant_characters $1`
+
+function listar_words(){
+
+    # Lista las palabras que aparecen en el archivo
+
+    for((i=1; i<=8; i++))
+    do
+        echo `cat $1 | cut -d " " -f $i`
+    
+    done
 
 
-echo "la cantidad de caracteres que tiene el archivo es: $CHARACTERS"
+}
+
+
+listar_words $1
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PROMEDIO_LEN=`len_promedio`
+
+echo "El promedio de longitud de palabras en el archivo es: $PROMEDIO_LEN"
