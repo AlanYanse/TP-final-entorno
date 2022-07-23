@@ -1,5 +1,7 @@
 #!/bin/bash
 
+clear
+
 #importando el Plugin para generar un arrow key
 source plugs/select-arrow.sh
 
@@ -23,7 +25,7 @@ echo ""
 options=("statsWords" "statsUsageWords" "findNames" "statsSentences" "blankLinesCounter" "${array[@]}") # join arrays to add some variable array
 
 case `select_opt "${options[@]}"` in
-    0) OPTION="selected Yes";;
+    0) exec scripts-childs/statsWords.sh $1;;
     1) OPTION="selected No";;
     *) OPTION="selected ${options[$?]}";;
 esac

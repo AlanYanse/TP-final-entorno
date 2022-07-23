@@ -51,7 +51,7 @@ function listar_words(){
 
     # Lista las palabras que aparecen en el archivo
 
-    for((i=1; i<=8; i++))
+    for((i=1; i<=$WORDS; i++))
     do
         echo `cat $1 | cut -d " " -f $i`
     
@@ -61,41 +61,53 @@ function listar_words(){
 }
 
 
-listar_words $1
+#listar_words $1
 
 
 
 
+# ------------------------------------- ZONA DE ESTADÍSTICAS ------------------------------------------------
 
 
+MENOR_WORD=`listar_words $1 | awk '{print length, $0}' | sort -n -s | cut -d " " -f2- | head -1`
 
 
+echo "La palabra más corta es: $MENOR_WORD"
+
+ 
+MAYOR_WORD=`listar_words $1 | awk '{print length, $0}' | sort -n -s | cut -d " " -f2- | tail -1`
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+echo "La palabra más larga es: $MAYOR_WORD"
 
 
 PROMEDIO_LEN=`len_promedio`
 
-echo "El promedio de longitud de palabras en el archivo es: $PROMEDIO_LEN"
+echo "El promedio de longitud de palabras es: $PROMEDIO_LEN"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#... fin ...
+
+
+
